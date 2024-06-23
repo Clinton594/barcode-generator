@@ -6,9 +6,11 @@ use Picqer\Barcode\BarcodeGeneratorPNG;
 
 function generateBarcode(string $barcodeData)
 {
-  $generator = new BarcodeGeneratorHTML();
+  $filename = "barcodes/barcode-{$barcodeData}.png";
+  $generator = new BarcodeGeneratorPNG();
   $barcode = $generator->getBarcode($barcodeData, $generator::TYPE_CODE_128);
-  return  [$barcode, $barcodeData];
+  file_put_contents($filename, $barcode);
+  return  [$filename, $barcodeData];
 }
 
 // Data for the barcode

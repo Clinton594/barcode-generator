@@ -28,8 +28,22 @@ if (!empty($_GET["barcode"])) {
       margin: 0;
     }
 
+    :root {
+      --width: 200px;
+      --height: auto;
+    }
+
+    @media print {
+      @page {
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box;
+        size: var(--width) var(--height);
+      }
+    }
+
     body>div {
-      width: 300px;
+      width: 350px;
       background-color: white;
       overflow-y: auto;
       padding: 20px;
@@ -70,17 +84,35 @@ if (!empty($_GET["barcode"])) {
         <button type="submit">Generate</button>
       </div>
     </form>
+
     <?php if (!empty($code)) { ?>
       <div id="barcodes">
-        <?php for ($i = 0; $i < 20; $i++) { ?>
-          <div style="position: relative;display: flex;flex-direction: column;align-items: center;">
-            <?= $code ?>
-            <small><?= $number ?></small>
-          </div>
-        <?php } ?>
+        <div style="position: relative;display: flex;flex-direction: column;align-items: center;">
+          <img src="<?= $code ?>" alt="" srcset="">
+          <small><?= $number ?></small>
+        </div>
+      </div>
+      <div>
+        <button id="printnow">Print</button>
       </div>
     <?php } ?>
   </div>
+  <script src="./jquery-3.3.1.min.js"></script>
+  <script>
+    $(document).ready(() => {
+      $("#printnow").click(() => {
+        print_barcode("barcodes")
+      })
+    })
+
+    function print_barcode(BarCodePrintDiv) {
+      var body = document.body.innerHTML;
+      var data = document.getElementById(BarCodePrintDiv).innerHTML;
+      document.body.innerHTML = data;
+      window.print();
+      document.body.innerHTML = body;
+    }
+  </script>
 </body>
 
 </html>
