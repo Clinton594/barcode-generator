@@ -39,7 +39,7 @@ if (!empty($_GET["barcode"])) {
         padding: 0 !important;
         box-sizing: border-box;
         size: var(--width) var(--height);
-        transform: scale(0.5);
+        /* transform: scale(0.5); */
       }
     }
 
