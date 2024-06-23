@@ -29,8 +29,8 @@ if (!empty($_GET["barcode"])) {
     }
 
     :root {
-      --width: 75mm;
-      --height: 27mm;
+      --width: 62mm;
+      --height: 23mm;
     }
 
     @media print {
@@ -39,6 +39,7 @@ if (!empty($_GET["barcode"])) {
         padding: 0 !important;
         box-sizing: border-box;
         size: var(--width) var(--height);
+        transform: scale(0.5);
       }
     }
 
