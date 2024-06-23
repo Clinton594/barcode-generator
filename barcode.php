@@ -8,7 +8,12 @@ function generateBarcode(string $barcodeData)
 {
   $filename = "barcodes/barcode-{$barcodeData}.png";
   $generator = new BarcodeGeneratorPNG();
-  $barcode = $generator->getBarcode($barcodeData, $generator::TYPE_CODE_128);
+  // Set barcode width and height (in pixels)
+  $barcodeWidth = 2; // Width of each bar in pixels
+  $barcodeHeight = 60; // Height of the barcode in pixels
+
+  // Generate the barcode
+  $barcode = $generator->getBarcode($barcodeData, $generator::TYPE_CODE_128, $barcodeWidth, $barcodeHeight);
   file_put_contents($filename, $barcode);
   return  [$filename, $barcodeData];
 }
