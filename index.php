@@ -30,7 +30,7 @@ if (!empty($_GET["barcode"])) {
 
     :root {
       --width: 75mm;
-      --height: 22mm;
+      --height: 27mm;
     }
 
     @media print {
